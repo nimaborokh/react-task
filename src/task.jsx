@@ -1,6 +1,5 @@
 import { useRef, useState } from "react";
 const Task = () => {
-    let objectInformation = useRef();
     let selectAllInput = useRef();
     const [arr, setArr] = useState([
         { id: 1, fname: "mmd", active: false },
@@ -14,11 +13,9 @@ const Task = () => {
         const index = newArr.findIndex(
             (obj) => obj.id == event.currentTarget.id
         );
-        if (newArr[index].active) {
-            newArr[index].active = false;
-        } else {
-            newArr[index].active = true;
-        }
+        newArr[index].active == true
+            ? (newArr[index].active = false)
+            : (newArr[index].active = true);
 
         setArr(newArr);
         let trueArr = [];
@@ -27,11 +24,9 @@ const Task = () => {
                 trueArr.push(newArr[i].active);
             }
         }
-        if (trueArr.length === 5) {
-            selectAllInput.current.checked = true;
-        } else {
-            selectAllInput.current.checked = false;
-        }
+        trueArr.length === 5
+            ? (selectAllInput.current.checked = true)
+            : (selectAllInput.current.checked = false);
     }
     function giveId() {
         let activeCheckBoxesId = [];
@@ -70,16 +65,16 @@ const Task = () => {
                         </td>
                     </tr>
                 </thead>
-                <tbody ref={objectInformation}>
-                    {arr.map((obj) => {
+                <tbody>
+                    {arr.map((obj, i) => {
                         return (
-                            <tr>
+                            <tr key={i}>
                                 <td>{obj.fname}</td>
                                 <td>
                                     <input
                                         type="checkbox"
                                         id={obj.id}
-                                        onClick={checked}
+                                        onChange={checked}
                                         checked={obj.active}
                                     />
                                 </td>
