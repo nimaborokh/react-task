@@ -9,10 +9,12 @@ const Task = () => {
         { id: 5, fname: "hedieh", active: false },
     ]);
     function checked(event) {
-        const index = arr.findIndex((obj) => obj.id == event.currentTarget.id);
+        const index = arr.findIndex(
+            (obj) => obj.id === Number(event.currentTarget.id)
+        );
         setArr(
             [...arr],
-            arr[index].active == true
+            arr[index].active
                 ? (arr[index].active = false)
                 : (arr[index].active = true)
         );
@@ -29,9 +31,10 @@ const Task = () => {
     function giveId() {
         let activeCheckBoxesId = [];
         arr.map((obj) => {
-            if (obj.active == true) {
+            if (obj.active) {
                 activeCheckBoxesId.push(obj.id);
             }
+            return null;
         });
         console.log(activeCheckBoxesId);
     }
