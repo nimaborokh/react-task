@@ -1,5 +1,5 @@
-import Task from "./task";
 import React, { Component } from "react";
+import Task from "./task";
 class App extends Component {
     state = {};
     render() {

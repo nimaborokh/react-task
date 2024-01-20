@@ -9,19 +9,17 @@ const Task = () => {
         { id: 5, fname: "hedieh", active: false },
     ]);
     function checked(event) {
-        const newArr = [...arr];
-        const index = newArr.findIndex(
-            (obj) => obj.id == event.currentTarget.id
+        const index = arr.findIndex((obj) => obj.id == event.currentTarget.id);
+        setArr(
+            [...arr],
+            arr[index].active == true
+                ? (arr[index].active = false)
+                : (arr[index].active = true)
         );
-        newArr[index].active == true
-            ? (newArr[index].active = false)
-            : (newArr[index].active = true);
-
-        setArr(newArr);
         let trueArr = [];
-        for (let i = 0; i < newArr.length; i++) {
-            if (newArr[i].active) {
-                trueArr.push(newArr[i].active);
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i].active) {
+                trueArr.push(arr[i].active);
             }
         }
         trueArr.length === 5
@@ -39,13 +37,15 @@ const Task = () => {
     }
     function selectAll(event) {
         if (event.currentTarget.checked) {
-            const newArr = [...arr];
-            newArr.map((obj) => (obj.active = true));
-            setArr(newArr);
+            setArr(
+                [...arr],
+                arr.map((obj) => (obj.active = true))
+            );
         } else {
-            const newArr = [...arr];
-            newArr.map((obj) => (obj.active = false));
-            setArr(newArr);
+            setArr(
+                [...arr],
+                arr.map((obj) => (obj.active = false))
+            );
         }
     }
     return (
